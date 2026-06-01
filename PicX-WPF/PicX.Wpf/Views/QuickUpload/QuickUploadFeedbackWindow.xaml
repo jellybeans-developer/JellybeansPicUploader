@@ -1,0 +1,50 @@
+<Window x:Class="PicXWpf.Views.QuickUpload.QuickUploadFeedbackWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:wpfui="http://schemas.lepo.co/wpfui/2022/xaml"
+        Title="PicX 上传状态"
+        Width="320"
+        SizeToContent="Height"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ShowInTaskbar="False"
+        Topmost="True"
+        ResizeMode="NoResize"
+        WindowStartupLocation="Manual"
+        ShowActivated="False"
+        Focusable="False"
+        IsHitTestVisible="False">
+    <Border CornerRadius="10"
+            Background="#F0282830"
+            BorderBrush="#66FFFFFF"
+            BorderThickness="1"
+            Padding="14,12"
+            MinHeight="56">
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                <wpfui:SymbolIcon x:Name="StatusIcon"
+                                  Symbol="CloudArrowUp24"
+                                  FontSize="18"
+                                  Foreground="#FF4FC3F7"
+                                  VerticalAlignment="Top"
+                                  Margin="0,1,8,0"/>
+                <TextBlock x:Name="StatusMessageTextBlock"
+                           Text="正在上传…"
+                           Foreground="#FFF0F0F0"
+                           FontSize="13"
+                           TextWrapping="Wrap"
+                           MaxWidth="260"/>
+            </StackPanel>
+            <ProgressBar x:Name="UploadProgressBar"
+                         Height="4"
+                         Minimum="0"
+                         Maximum="100"
+                         Value="0"
+                         Visibility="Collapsed"
+                         Foreground="#FF4FC3F7"
+                         Background="#33FFFFFF"
+                         BorderThickness="0"/>
+        </StackPanel>
+    </Border>
+</Window>

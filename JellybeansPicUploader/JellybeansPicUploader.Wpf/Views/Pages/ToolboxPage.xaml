@@ -1,0 +1,41 @@
+<pages:PageHostBase x:Class="JellybeansPicUploader.Views.Pages.ToolboxPage"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:wpfui="http://schemas.lepo.co/wpfui/2022/xaml"
+                    xmlns:pages="clr-namespace:JellybeansPicUploader.Views.Pages">
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <WrapPanel Grid.Row="0" Margin="0,0,0,12">
+            <wpfui:Button Content="选择图片" Command="{Binding SelectToolboxFileCommand}" Icon="{wpfui:SymbolIcon Image24}" Margin="0,0,8,8"/>
+            <wpfui:Button Content="压缩并保存" Command="{Binding RunToolboxCompressCommand}" Margin="0,0,8,8"/>
+            <wpfui:Button Content="转 Base64" Command="{Binding RunToolboxBase64Command}" Margin="0,0,8,8"/>
+            <wpfui:Button Content="加水印并保存" Command="{Binding RunToolboxWatermarkCommand}" Margin="0,0,8,8"/>
+            <wpfui:Button Content="复制 Base64" Command="{Binding CopyToolboxBase64Command}" Icon="{wpfui:SymbolIcon Copy24}"/>
+        </WrapPanel>
+        <wpfui:TextBlock Grid.Row="1" Margin="0,0,0,12" Appearance="Secondary"
+                      Text="{Binding ToolboxSourceFilePath, StringFormat=当前文件：{0}}"/>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <wpfui:Card Grid.Column="0" Margin="0,0,8,0">
+                <StackPanel Margin="12">
+                    <wpfui:TextBlock Text="Base64 结果" FontTypography="BodyStrong" Margin="0,0,0,8"/>
+                    <wpfui:TextBox Text="{Binding ToolboxBase64Result}" AcceptsReturn="True" TextWrapping="Wrap"
+                                MinHeight="200" IsReadOnly="True"/>
+                </StackPanel>
+            </wpfui:Card>
+            <wpfui:Card Grid.Column="1" Margin="8,0,0,0">
+                <StackPanel Margin="12">
+                    <wpfui:TextBlock Text="输出文件" FontTypography="BodyStrong" Margin="0,0,0,8"/>
+                    <ListBox ItemsSource="{Binding ToolboxProcessedFiles}" MinHeight="200"/>
+                </StackPanel>
+            </wpfui:Card>
+        </Grid>
+    </Grid>
+</pages:PageHostBase>

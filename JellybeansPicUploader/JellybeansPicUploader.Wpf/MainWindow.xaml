@@ -1,0 +1,58 @@
+<wpfui:FluentWindow x:Class="JellybeansPicUploader.MainWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:wpfui="http://schemas.lepo.co/wpfui/2022/xaml"
+                 xmlns:pages="clr-namespace:JellybeansPicUploader.Views.Pages"
+                 Title="JellybeansPicUploader"
+                 Width="1280" Height="860"
+                 WindowStartupLocation="CenterScreen"
+                 WindowBackdropType="None"
+                 ExtendsContentIntoTitleBar="True"
+                 AllowDrop="True"
+                 PreviewKeyDown="MainWindow_OnPreviewKeyDown"
+                 Drop="MainWindow_OnDrop"
+                 DragOver="MainWindow_OnDragOver">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <wpfui:TitleBar Grid.Row="0" Title="JellybeansPicUploader 桌面图床" ShowMaximize="True" ShowMinimize="True"/>
+
+        <wpfui:NavigationView x:Name="RootNavigation"
+                           Grid.Row="1"
+                           PaneDisplayMode="Left"
+                           IsBackButtonVisible="Collapsed"
+                           SelectionChanged="RootNavigation_OnSelectionChanged">
+            <wpfui:NavigationView.MenuItems>
+                <wpfui:NavigationViewItem Content="登录/配置"
+                                       Icon="{wpfui:SymbolIcon Person24}"
+                                       TargetPageType="{x:Type pages:LoginConfigPage}"/>
+                <wpfui:NavigationViewItem Content="上传"
+                                       Icon="{wpfui:SymbolIcon CloudArrowUp24}"
+                                       TargetPageType="{x:Type pages:UploadPage}"/>
+                <wpfui:NavigationViewItem Content="管理"
+                                       Icon="{wpfui:SymbolIcon Folder24}"
+                                       TargetPageType="{x:Type pages:ManagementPage}"/>
+                <wpfui:NavigationViewItem Content="设置"
+                                       Icon="{wpfui:SymbolIcon Settings24}"
+                                       TargetPageType="{x:Type pages:SettingsPage}"/>
+                <wpfui:NavigationViewItem Content="工具箱"
+                                       Icon="{wpfui:SymbolIcon Toolbox24}"
+                                       TargetPageType="{x:Type pages:ToolboxPage}"/>
+            </wpfui:NavigationView.MenuItems>
+
+            <wpfui:NavigationView.FooterMenuItems>
+                <wpfui:NavigationViewItem Content="{Binding LoginDisplayName}"
+                                       Icon="{wpfui:SymbolIcon PersonCircle24}"
+                                       IsEnabled="False"/>
+            </wpfui:NavigationView.FooterMenuItems>
+        </wpfui:NavigationView>
+
+        <wpfui:Card Grid.Row="2" Margin="12,8,12,12" Padding="12,8">
+            <wpfui:TextBlock Text="{Binding StatusText}" TextWrapping="Wrap"/>
+        </wpfui:Card>
+    </Grid>
+</wpfui:FluentWindow>

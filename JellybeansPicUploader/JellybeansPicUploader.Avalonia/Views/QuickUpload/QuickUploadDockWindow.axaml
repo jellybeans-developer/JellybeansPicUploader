@@ -1,0 +1,21 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="JellybeansPicUploader.Views.QuickUpload.QuickUploadDockWindow"
+        Title="JellybeansPicUploader 快捷上传"
+        Width="52" Height="56"
+        WindowDecorations="None"
+        TransparencyLevelHint="Transparent"
+        Background="Transparent"
+        ShowInTaskbar="False"
+        Topmost="True"
+        CanResize="False"
+        WindowStartupLocation="Manual">
+    <Border x:Name="DockNoteBorder" CornerRadius="10,10,4,4" Background="#FF3D3D42"
+            BorderBrush="#88FFFFFF" BorderThickness="1" Cursor="Hand"
+            PointerPressed="DockNoteBorder_OnPointerPressed"
+            PointerReleased="DockNoteBorder_OnPointerReleased"
+            ToolTip.Tip="单击快捷上传；双击恢复主窗口">
+        <TextBlock Text="+" FontSize="28" FontWeight="SemiBold" Foreground="#FFE8E8E8"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </Border>
+</Window>

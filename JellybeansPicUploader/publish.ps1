@@ -1,9 +1,10 @@
-# JellybeansPicUploader publish script
-# Usage: run from JellybeansPicUploader folder -> .\publish.ps1
+# JellybeansPicUploader 发布脚本（Avalonia）
+# 在 JellybeansPicUploader 目录下执行: .\publish.ps1
 
 $ErrorActionPreference = "Stop"
-$ProjectPath = Join-Path $PSScriptRoot "JellybeansPicUploader.Wpf\JellybeansPicUploader.Wpf.csproj"
-$DistRoot = Join-Path $PSScriptRoot "dist"
+$ProjectPath = Join-Path $PSScriptRoot "JellybeansPicUploader.Avalonia\JellybeansPicUploader.Avalonia.csproj"
+# 与 PublishProfile 中 PublishDir（..\..\dist）一致：仓库根目录 dist
+$DistRoot = Join-Path $PSScriptRoot "..\dist"
 $Version = "1.0.0"
 
 Write-Host "Cleaning dist folder..." -ForegroundColor Cyan

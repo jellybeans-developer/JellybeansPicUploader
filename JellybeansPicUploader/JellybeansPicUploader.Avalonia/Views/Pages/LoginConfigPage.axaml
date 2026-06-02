@@ -1,0 +1,96 @@
+<pages:PageHostBase xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:pages="using:JellybeansPicUploader.Views.Pages"
+                    xmlns:resources="using:JellybeansPicUploader.Resources"
+                    x:Class="JellybeansPicUploader.Views.Pages.LoginConfigPage">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="24" Spacing="16">
+            <Border Background="{DynamicResource SemiColorBackground1}" CornerRadius="8" Padding="16">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="GitHub 登录" FontSize="18" FontWeight="SemiBold"/>
+                    <TextBlock TextWrapping="Wrap" Opacity="0.75"
+                               Text="点击「GitHub 授权登录」将打开浏览器完成授权，成功后自动获取 Token 并登录。"/>
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <Button Content="{Binding GitHubAuthorizeButtonText}"
+                                Command="{Binding LoginWithGitHubAuthorizeCommand}"
+                                Classes="primary"/>
+                        <Button Content="安装 GitHub App" Command="{Binding OpenInstallPageCommand}"/>
+                    </StackPanel>
+                    <TextBlock Text="{Binding LoginDisplayName, StringFormat=当前用户：{0}}" FontWeight="SemiBold"/>
+                </StackPanel>
+            </Border>
+
+            <Expander Header="手动填写 Token（高级）">
+                <Grid ColumnDefinitions="*,Auto" Margin="8">
+                    <TextBox Grid.Column="0" PlaceholderText="GitHub Personal Access Token"
+                             Text="{Binding ManualToken}" Margin="0,0,8,0"/>
+                    <Button Grid.Column="1" Content="Token 登录" Command="{Binding LoginWithManualTokenCommand}"/>
+                </Grid>
+            </Expander>
+
+            <Border Background="{DynamicResource SemiColorBackground1}" CornerRadius="8" Padding="16">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="图床配置" FontSize="18" FontWeight="SemiBold"/>
+                    <TextBlock TextWrapping="Wrap" Opacity="0.75"
+                               Text="首次填写后将自动保存，下次启动无需重复填写；修改后也会自动保存，也可点击「保存设置」立即写入。"/>
+                    <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto,Auto,Auto,Auto">
+                        <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,0,8,8" Spacing="4">
+                            <TextBlock Text="Owner"/>
+                            <TextBox Text="{Binding Owner}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="0" Grid.Column="1" Margin="0,0,8,8" Spacing="4">
+                            <TextBlock Text="Repository"/>
+                            <TextBox Text="{Binding Repository}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="0" Grid.Column="2" Margin="0,0,0,8" Spacing="4">
+                            <TextBlock Text="Branch"/>
+                            <ComboBox ItemsSource="{Binding AvailableBranches}"
+                                      Text="{Binding Branch}"
+                                      IsEditable="True"
+                                      HorizontalAlignment="Stretch"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,8,8" Spacing="4">
+                            <TextBlock Text="Email（可选）"/>
+                            <TextBox Text="{Binding Email}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,0,8,8" Spacing="4">
+                            <TextBlock Text="目录模式"/>
+                            <ComboBox ItemsSource="{x:Static resources:EnumBindingSource.DirectoryModeValues}"
+                                      SelectedItem="{Binding DirectoryMode}"
+                                      HorizontalAlignment="Stretch"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" Grid.Column="2" Margin="0,0,0,8" Spacing="4">
+                            <TextBlock Text="目标目录"/>
+                            <TextBox Text="{Binding TargetDirectoryPath}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,8" Spacing="4">
+                            <TextBlock Text="Commit Message"/>
+                            <TextBox Text="{Binding CommitMessage}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Spacing="8">
+                            <TextBlock Text="上传后图片链接方式"/>
+                            <ComboBox ItemsSource="{x:Static resources:EnumBindingSource.PostUploadPublishModeValues}"
+                                      SelectedItem="{Binding PostUploadPublishMode}"/>
+                            <TextBlock TextWrapping="Wrap" Opacity="0.75"
+                                       Text="上传成功后将按此方式生成链接；GitHub Pages 需约 1 分钟生效，jsDelivr 通常立即可用。"/>
+                            <StackPanel IsVisible="{Binding IsJsDelivrVersionReferenceConfigurationVisible}" Spacing="8">
+                                <TextBlock Text="jsDelivr 版本引用（覆盖同路径图片时）"/>
+                                <ComboBox ItemsSource="{x:Static resources:EnumBindingSource.JsDelivrVersionReferenceModeValues}"
+                                          SelectedItem="{Binding JsDelivrVersionReferenceMode}"/>
+                                <StackPanel IsVisible="{Binding IsJsDelivrTagNameConfigurationVisible}" Spacing="4">
+                                    <TextBlock Text="Tag 名称（不含 refs/tags/ 前缀）"/>
+                                    <TextBox Text="{Binding JsDelivrTagName}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <StackPanel Orientation="Horizontal" Spacing="8">
+                <Button Content="保存设置" Command="{Binding SaveSettingsCommand}"/>
+                <Button Content="退出登录" Command="{Binding LogoutCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</pages:PageHostBase>

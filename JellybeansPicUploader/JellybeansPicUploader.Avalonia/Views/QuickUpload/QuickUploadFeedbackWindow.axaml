@@ -1,0 +1,28 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="JellybeansPicUploader.Views.QuickUpload.QuickUploadFeedbackWindow"
+        Title="JellybeansPicUploader 上传状态"
+        Width="320"
+        SizeToContent="Height"
+        WindowDecorations="None"
+        TransparencyLevelHint="Transparent"
+        Background="Transparent"
+        ShowInTaskbar="False"
+        Topmost="True"
+        CanResize="False"
+        WindowStartupLocation="Manual"
+        ShowActivated="False"
+        Focusable="False">
+    <Border CornerRadius="10" Background="#F0282830" BorderBrush="#66FFFFFF"
+            BorderThickness="1" Padding="14,12" MinHeight="56">
+        <StackPanel Spacing="8">
+            <StackPanel Orientation="Horizontal" Spacing="8">
+                <TextBlock x:Name="StatusIconTextBlock" Text="☁" FontSize="18" Foreground="#FF4FC3F7"/>
+                <TextBlock x:Name="StatusMessageTextBlock" Text="正在上传…" Foreground="#FFF0F0F0"
+                           TextWrapping="Wrap" MaxWidth="260"/>
+            </StackPanel>
+            <ProgressBar x:Name="UploadProgressBar" Height="4" Minimum="0" Maximum="100"
+                         IsVisible="False" Foreground="#FF4FC3F7"/>
+        </StackPanel>
+    </Border>
+</Window>

@@ -39,6 +39,9 @@ ScaffoldingReadMe.txt
 # dotenv environment variables file
 .env
 
+# Publish output
+dist/
+
 # Others
 ~$*
 *~
@@ -55,3 +58,6 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+.specstory/
+statistics.json

@@ -1,0 +1,34 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="JellybeansPicUploader.Views.QuickUpload.QuickUploadPanelWindow"
+        Title="JellybeansPicUploader 快捷上传"
+        Width="360" Height="168"
+        WindowDecorations="None"
+        TransparencyLevelHint="Transparent"
+        Background="Transparent"
+        ShowInTaskbar="False"
+        Topmost="True"
+        CanResize="False"
+        KeyDown="QuickUploadPanelWindow_OnKeyDown">
+    <Border CornerRadius="12" Background="#FF2B2B30" BorderBrush="#55FFFFFF" BorderThickness="1" Padding="2">
+        <Grid x:Name="QuickUploadDropZone" MinHeight="148" Cursor="Hand"
+              PointerReleased="QuickUploadDropZone_OnPointerReleased"
+              DragDrop.AllowDrop="True"
+              DragDrop.DragOver="QuickUploadDropZone_OnDragOver"
+              DragDrop.DragLeave="QuickUploadDropZone_OnDragLeave"
+              DragDrop.Drop="QuickUploadDropZone_OnDrop">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20" Spacing="12">
+                <TextBlock Text="☁" FontSize="44" HorizontalAlignment="Center" Opacity="0.8"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="4">
+                    <TextBlock Text="将文件拖拽到此处，或 " Opacity="0.75"/>
+                    <TextBlock Text="点击上传" Foreground="#FF4FC3F7" Cursor="Hand"
+                               PointerReleased="ClickUploadText_OnPointerReleased"/>
+                </StackPanel>
+            </StackPanel>
+            <Border x:Name="QuickUploadDropOverlay" Background="#B34FC3F7" BorderBrush="#FF4FC3F7"
+                    BorderThickness="2" CornerRadius="12" IsVisible="False" IsHitTestVisible="False">
+                <TextBlock Text="松开鼠标添加并上传" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+        </Grid>
+    </Border>
+</Window>

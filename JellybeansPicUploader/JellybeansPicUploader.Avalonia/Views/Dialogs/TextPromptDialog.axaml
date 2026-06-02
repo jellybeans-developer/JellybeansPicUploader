@@ -1,0 +1,19 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="JellybeansPicUploader.Views.Dialogs.TextPromptDialog"
+        Title="输入"
+        SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False"
+        MinWidth="420"
+        ShowInTaskbar="False"
+        Background="{DynamicResource SemiColorBackground1}">
+    <Grid Margin="20" RowDefinitions="Auto,Auto,Auto">
+        <TextBlock x:Name="PromptTextBlock" Grid.Row="0" TextWrapping="Wrap" Margin="0,0,0,12"/>
+        <TextBox x:Name="InputTextBox" Grid.Row="1" MinWidth="360" Margin="0,0,0,16" KeyDown="InputTextBox_OnKeyDown"/>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
+            <Button Content="取消" Click="CancelButton_OnClick"/>
+            <Button Content="确定" Classes="primary" Click="ConfirmButton_OnClick"/>
+        </StackPanel>
+    </Grid>
+</Window>

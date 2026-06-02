@@ -1,0 +1,82 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:pages="using:JellybeansPicUploader.Views.Pages"
+        x:Class="JellybeansPicUploader.MainWindow"
+        Title="JellybeansPicUploader"
+        Icon="avares://JellybeansPicUploader.Avalonia/Assets/app-icon.png"
+        Width="1280" Height="860"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource SemiColorBackground0}">
+    <Grid RowDefinitions="Auto,*,Auto">
+        <Border Grid.Row="0"
+                Background="{DynamicResource SemiColorBackground1}"
+                Padding="16,12">
+            <StackPanel Orientation="Horizontal" Spacing="12">
+                <Image Width="28" Height="28"
+                       Source="avares://JellybeansPicUploader.Avalonia/Assets/app-icon.png"/>
+                <TextBlock Text="JellybeansPicUploader 桌面图床"
+                           FontSize="18"
+                           FontWeight="SemiBold"
+                           VerticalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+
+        <Grid Grid.Row="1" ColumnDefinitions="200,*">
+            <Border Grid.Column="0"
+                    Background="{DynamicResource SemiColorBackground1}"
+                    BorderBrush="{DynamicResource SemiColorBorder}"
+                    BorderThickness="0,0,1,0">
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Bottom" Margin="12" Spacing="10">
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <Border Width="36" Height="36" CornerRadius="18"
+                                    ClipToBounds="True"
+                                    Background="{DynamicResource SemiColorFill1}">
+                                <Panel>
+                                    <Image Source="{Binding SidebarAvatarImage}"
+                                           Stretch="UniformToFill"
+                                           IsVisible="{Binding HasSidebarAvatarImage}"/>
+                                    <TextBlock Text="糖"
+                                               FontSize="16"
+                                               FontWeight="SemiBold"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               IsVisible="{Binding !HasSidebarAvatarImage}"/>
+                                </Panel>
+                            </Border>
+                            <TextBlock Text="糖豆人科技"
+                                       VerticalAlignment="Center"
+                                       FontWeight="SemiBold"/>
+                        </StackPanel>
+                        <StackPanel Spacing="6">
+                            <TextBlock Text="深色模式" Opacity="0.75"/>
+                            <ToggleSwitch IsChecked="{Binding IsDarkThemeEnabled, Mode=TwoWay}"
+                                          HorizontalAlignment="Left"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <ListBox x:Name="NavigationList"
+                             Margin="8"
+                             SelectionChanged="NavigationList_OnSelectionChanged">
+                        <ListBoxItem Content="登录/配置"/>
+                        <ListBoxItem Content="上传"/>
+                        <ListBoxItem Content="管理"/>
+                        <ListBoxItem Content="设置"/>
+                        <ListBoxItem Content="工具箱"/>
+                    </ListBox>
+                </DockPanel>
+            </Border>
+
+            <Border Grid.Column="1" Background="{DynamicResource SemiColorBackground0}">
+                <ContentControl x:Name="PageHost"/>
+            </Border>
+        </Grid>
+
+        <Border Grid.Row="2"
+                Margin="12,8,12,12"
+                Padding="12,8"
+                Background="{DynamicResource SemiColorBackground2}"
+                CornerRadius="8">
+            <TextBlock Text="{Binding StatusText}" TextWrapping="Wrap"/>
+        </Border>
+    </Grid>
+</Window>

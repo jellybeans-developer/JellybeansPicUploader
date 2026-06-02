@@ -1,0 +1,65 @@
+<pages:PageHostBase xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:pages="using:JellybeansPicUploader.Views.Pages"
+                    x:Class="JellybeansPicUploader.Views.Pages.ManagementPage">
+    <Grid Margin="24" RowDefinitions="Auto,*,Auto">
+        <WrapPanel Grid.Row="0" Margin="0,0,0,16">
+            <Button Content="刷新" Command="{Binding RefreshManagedImagesCommand}" Margin="0,0,8,8"/>
+            <Button Content="全选" Command="{Binding SelectAllManagedImagesCommand}" Margin="0,0,8,8"/>
+            <Button Content="取消选择" Command="{Binding ClearManagedImageSelectionCommand}" Margin="0,0,8,8"/>
+            <Button Content="删除选中" Command="{Binding DeleteSelectedImagesCommand}" Margin="0,0,8,8"/>
+            <Button Content="复制选中链接" Command="{Binding CopySelectedImageLinksCommand}" Margin="0,0,8,8"/>
+        </WrapPanel>
+
+        <Border Grid.Row="1" Background="{DynamicResource SemiColorBackground1}" CornerRadius="8" Padding="12">
+            <Grid>
+                <ScrollViewer IsVisible="{Binding !IsManagedImageGalleryEmpty}">
+                    <ItemsControl ItemsSource="{Binding ManagedImages}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Width="168" Height="200" Margin="8" CornerRadius="8"
+                                        Background="{DynamicResource SemiColorBackground2}"
+                                        BorderBrush="{DynamicResource SemiColorBorder}" BorderThickness="1"
+                                        ToolTip.Tip="{Binding Name}">
+                                    <Grid>
+                                        <Border CornerRadius="8" ClipToBounds="True" Margin="0,0,0,28">
+                                            <Grid Background="{DynamicResource SemiColorBackground0}">
+                                                <Image Source="{Binding ThumbnailSource}" Stretch="Uniform"/>
+                                                <ProgressBar IsIndeterminate="True" IsVisible="{Binding IsThumbnailLoading}"
+                                                             Width="28" Height="28" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                <Border Background="#66000000" IsVisible="{Binding IsDeleting}">
+                                                    <TextBlock Text="删除中…" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </Grid>
+                                        </Border>
+                                        <CheckBox IsChecked="{Binding IsSelected}" Margin="8" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                        <TextBlock Text="{Binding Name}" MaxWidth="152" HorizontalAlignment="Center"
+                                                   VerticalAlignment="Bottom" Margin="8" TextTrimming="CharacterEllipsis"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+
+                <TextBlock Text="仓库中暂无图片，请先在「上传」页添加图片。"
+                           HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.75"
+                           IsVisible="{Binding IsManagedImageGalleryEmpty}"/>
+
+                <Border Background="#99000000" CornerRadius="8" IsVisible="{Binding IsBusy}">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="12">
+                        <ProgressBar IsIndeterminate="True" Width="40" Height="40"/>
+                        <TextBlock Text="正在加载图片列表…" Foreground="White"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Border>
+
+        <TextBlock Grid.Row="2" Margin="0,12,0,0" Opacity="0.75" Text="{Binding ManagedImageGallerySummary}"/>
+    </Grid>
+</pages:PageHostBase>

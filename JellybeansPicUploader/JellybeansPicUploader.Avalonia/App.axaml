@@ -1,0 +1,23 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:semi="https://irihi.tech/semi"
+             x:Class="JellybeansPicUploader.App"
+             RequestedThemeVariant="Dark">
+    <Application.Styles>
+        <semi:SemiTheme Locale="zh-CN" />
+        <Style Selector="Window">
+            <Setter Property="Icon" Value="avares://JellybeansPicUploader.Avalonia/Assets/app-icon.png" />
+            <Setter Property="Background" Value="{DynamicResource SemiColorBackground0}" />
+            <Setter Property="Foreground" Value="{DynamicResource SemiColorText0}" />
+        </Style>
+        <Style Selector="Window TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource SemiColorText0}" />
+        </Style>
+        <Style Selector="Window ListBoxItem">
+            <Setter Property="Foreground" Value="{DynamicResource SemiColorText0}" />
+        </Style>
+        <Style Selector="Window RadioButton">
+            <Setter Property="Foreground" Value="{DynamicResource SemiColorText0}" />
+        </Style>
+    </Application.Styles>
+</Application>
